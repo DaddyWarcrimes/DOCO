@@ -14,6 +14,12 @@ creaturelist::~creaturelist()
 
 }
 
+void creaturelist::init(int size)
+{
+	list = new DOCO[size];
+	iterator = 0;
+}
+
 void creaturelist::addDOCO(DOCO newDOCO)
 {
 	list[iterator] = newDOCO;
