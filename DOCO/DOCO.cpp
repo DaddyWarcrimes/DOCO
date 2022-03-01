@@ -41,6 +41,8 @@ void DOCO::setLocation(int x, int y)
 	mapY = y;
 	return;
 }
+
+//DOCO takes it's turn based upon surrounding conditions
 void DOCO::act()
 {
 	if (mapX == -1)
@@ -69,6 +71,7 @@ void DOCO::act()
 			}
 		}
 	}
+	//Checks if it can move on current azimuth
 	if (!myMap->inRange(mapX + azimuthX,mapY + azimuthY) || myMap->isOccupied(mapX + azimuthX, mapY + azimuthY))
 	{
 		alterCourse();
@@ -97,13 +100,16 @@ void DOCO::addEnergy(unsigned int e)
 	energy += e;
 	return;
 }
+
+//Finds a new course based on surrounding conditions
 void DOCO::alterCourse()
 {
-	//printAzimuth();
+	//Ordered pair coordinate
 	struct pair {
 		int x;
 		int y;
 	};
+	//Aggregation of ordered pairs
 	vector<pair> pairs;
 	for (int i = -1; i < 2; i++)
 	{
@@ -123,6 +129,7 @@ void DOCO::alterCourse()
 		}
 	}
 
+	//DOCO cannot move in any direction
 	if (pairs.size() == 0)
 	{
 		azimuthX = 0;
@@ -133,16 +140,12 @@ void DOCO::alterCourse()
 		pair select = pairs.at(rand() % pairs.size());
 		azimuthX = select.x;
 		azimuthY = select.y;
-		//printAzimuth();
 	}
-
-	
 	return;
 }
 
 string DOCO::getAzimuth()
 {
-//	std::cout << '(' << azimuthX << ',' << azimuthY << ')' << std::endl;
 	std::string out;
 	out.append("(");
 	out.append(to_string(azimuthX));
@@ -158,6 +161,7 @@ unsigned int DOCO::getEnergy()
 	return energy;
 }
 
+//DOCO moves on current azimuth, do not invoke before checking availability of destination
 void DOCO::move()
 {
 #ifdef DEBUG

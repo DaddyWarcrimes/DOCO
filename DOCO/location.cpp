@@ -10,7 +10,6 @@ using namespace std;
 location::location()
 {
 	occupant = nullptr;
-	//std::cout << "location constructor\n";
 }
 
 location::~location()
@@ -51,6 +50,7 @@ void location::addPellet()
 	return;
 }
 
+// Returns the total energy of all pellets at the location, and removes them. Simulates DOCO eating the pellets
 int location::feed()
 {
 	int sum = 0;

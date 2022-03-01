@@ -30,6 +30,7 @@ void creaturelist::addDOCO(DOCO newDOCO)
 	iterator++;
 }
 
+//Signals all DOCOs to take their turn (one at a time)
 void creaturelist::act()
 {
 	for (int i = 0; i < iterator; i++)
@@ -47,6 +48,7 @@ void creaturelist::act()
 	
 }
 
+//returns true if all DOCOs are dead
 bool creaturelist::extinct()
 {
 	int sum = 0;

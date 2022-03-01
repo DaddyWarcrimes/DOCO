@@ -22,6 +22,7 @@ map::map(int mx, int my)
 	populateGrid();
 }
 
+//Builds all locations on the map, and adds them to the grid
 void map:: populateGrid()
 {
 	grid = new location*[maxY];
@@ -56,12 +57,13 @@ void map::removeDOCO(int x, int y)
 	grid[x][y].removeDOCO();
 }
 
+//returns true if a specified location is actually on the map
 bool map::inRange(int x, int y)
 {
-	//std::cout << "Range check: " << x << "<" << maxX << " " << y << "<" << maxY << std::endl;
 	return (x >= 0 && y >= 0 && x < maxX && y < maxY);
 }
 
+//returns true if a DOCO is at the specified location
 bool map::isOccupied(int x, int y)
 {
 	return grid[x][y].isOccupied();
@@ -69,11 +71,11 @@ bool map::isOccupied(int x, int y)
 
 void map::addPellet(int x, int y)
 {
-//	std::cout << "Adding pellet to (" << x << ',' << y << ')' <<std::endl;
 	grid[x][y].addPellet();
 	return;
 }
 
+//Prints coordinates, locations, DOCOs and pellets in map format to the screen
 void map::draw()
 {
 	std::cout << "  ";
@@ -115,10 +117,14 @@ void map::draw()
 	}
 	
 }
+
+//Number of pellets at a specified map location
 int map::pelletCount(int x, int y)
 {
 	return (grid[x][y].pelletCount());
 }
+
+//DOCO eats all the pellets at a map location
 int map::feed(int x, int y)
 {
 	return grid[x][y].feed();

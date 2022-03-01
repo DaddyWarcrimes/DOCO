@@ -17,11 +17,50 @@
 
 int main()
 {
+    bool run = false;
+    string dataFile = "DOCOData01.xml";
+    int turns = -1;
+
+    while (!run)
+    {
+        system("cls");
+        string turnString;
+        if (turns == -1)
+        {
+            turnString = "INDEFINITE";
+        }
+        else
+        {
+            turnString = to_string(turns);
+        }
+        
+        std::cout << "Simulation will run based on datafile " << dataFile << ", for " << turnString << " turns."
+            << std::endl << "1. Run with theses parameters" << std::endl << "2. Change datafile" << std::endl
+            << "3. Edit turns" << std::endl;
+        int selection;
+        cin >> selection;
+        switch (selection)
+        {
+        case 1:
+            run = true;
+            break;
+        case 2:
+            std::cout << "Enter new datafile name, including the file extension." << std::endl;
+            cin >> dataFile;
+            break;
+        case 3:
+            std::cout << "Enter number of turns. For indefinite, use -1." << std::endl;
+            cin >> turns;
+            break;
+        default:
+            std::cout << "Invalid selection, please try again" << std::endl;
+            break;
+        }
+    }
     srand((unsigned int)time(0));
-    world w("DOCOData01.xml");
-    w.seed();
-//    w.seed();
-    w.run(100);
+    world w(dataFile.c_str());
+    system("cls");
+    w.run(turns);
 
 
     /*previously working code
