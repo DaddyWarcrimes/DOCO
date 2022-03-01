@@ -10,6 +10,7 @@
 #include "DOCO.h"
 #include <random>
 #include "creaturelist.h"
+#include "world.h"
 
 
 
@@ -17,6 +18,13 @@
 int main()
 {
     srand((unsigned int)time(0));
+    world w("DOCOData01.xml");
+    w.seed();
+//    w.seed();
+    w.run(100);
+
+
+    /*previously working code
     DataParser* dp = dp->getInstance("DOCOData01.xml");
 
 	map m(dp->getDOCOWorldWidth(),dp->getDOCOWorldHeight());
@@ -31,12 +39,8 @@ int main()
     for (int i = 0; i < dp->getDOCOWorldWidth() && i < dp->getDOCOWorldHeight(); i++)
     {
         m.addPellet(i, i);
-       // std::cout << m.pelletCount(i, i) << std::endl;
     }
     system("cls");
-    /*DOCO a(&m, , 20, 500);
-    DOCO b(&m, 14, 3, 500);
-    DOCO d(&m, 2, 3, 500);*/
     creaturelist l(dp->getDOCOCount());
     char getDir;
     int getX, getY;
@@ -45,25 +49,16 @@ int main()
         DOCO a(&m, getX, getY, 500);
         l.addDOCO(a);
     }
-    
-   //   return 0;
-    /*l.addDOCO(a);
-    l.addDOCO(b);
-    l.addDOCO(d);*/
-    m.draw();
+
     for (int i = 0; i < 150; i++)
     {
         system("timeout 1 /nobreak > nul");
         system("cls");
-        //a.act();
-        //b.act();
-        //d.act();
         l.act();
         m.draw();
-        //std::cout << "Current energy a:" << a.getEnergy() << " b: " << b.getEnergy() << " d: " << d.getEnergy() << std::endl;
     }
-    
-    //std::cout << m.inRange(0,1) << "-" << m.inRange(-1,0) << m.inRange(1,-1) << m.inRange(80,1) << m.inRange(1,90) << std::endl;
+    */
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

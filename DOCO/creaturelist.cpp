@@ -2,8 +2,12 @@
 #include "DOCO.h"
 #include <iostream>
 
-#define DEBUG
+//#define DEBUG
 
+creaturelist::creaturelist()
+{
+
+}
 creaturelist::creaturelist(int size)
 {
 	list = new DOCO[size];
@@ -41,4 +45,14 @@ void creaturelist::act()
 	std::cout << std::endl;
 #endif
 	
+}
+
+bool creaturelist::extinct()
+{
+	int sum = 0;
+	for (int i = 0; i < iterator; i++)
+	{
+		sum += list[i].getEnergy();
+	}
+	return(sum == 0);
 }
