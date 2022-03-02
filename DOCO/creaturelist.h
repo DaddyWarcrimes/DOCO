@@ -15,5 +15,6 @@ public:
 	void addDOCO(DOCO newDOCO);
 	void act();
 	bool extinct();
+	void report();
 };
 

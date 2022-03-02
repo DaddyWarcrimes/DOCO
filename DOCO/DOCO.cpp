@@ -24,6 +24,7 @@ DOCO::DOCO(map* newMap, int x, int y, int e)
 {
 	myMap = newMap;
 	myMap->addDOCO(this, x, y);
+	age = 0;
 	mapX = x;
 	mapY = y;
 	energy = e;
@@ -78,11 +79,7 @@ void DOCO::act()
 #ifdef DEBUG
 		std::cout << "Change course" << std::endl;
 #endif
-		/*myMap->removeDOCO(mapX, mapY);
-		mapX += azimuthX;
-		mapY += azimuthY;
-		myMap->addDOCO(this, mapX, mapY);*/
-		
+		age++;
 	}
 	move();
 
@@ -182,4 +179,23 @@ void DOCO::move()
 		mapY += azimuthY;
 		myMap->addDOCO(this, mapX, mapY);
 	}
+}
+
+//Report the the status of the DOCO as a string
+string DOCO::report()
+{
+	string out = "STATUS";
+	if (energy == 0)
+	{
+		out.append(" Dead ");
+	}
+	else
+	{
+		out.append(" Live ");
+	}
+	out.append("Age: ");
+	out.append(to_string(age));
+	out.append(" Energy: ");
+	out.append(to_string(energy));
+	return out;
 }

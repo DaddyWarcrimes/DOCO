@@ -58,3 +58,12 @@ bool creaturelist::extinct()
 	}
 	return(sum == 0);
 }
+
+void creaturelist::report()
+{
+	for (int i = 0; i < iterator; i++)
+	{
+		std::cout << i << ". " << list[i].report() << std::endl;
+	}
+	return;
+}

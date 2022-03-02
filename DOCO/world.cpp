@@ -14,25 +14,13 @@
 world::world(const char* fileName)
 {
 	init(fileName);
-	/*
-	DataParser* dp = dp->getInstance(fileName);
-	myMap = new map(dp->getDOCOWorldWidth(), dp->getDOCOWorldHeight());
-	int DOCOcount = dp->getDOCOCount();
-	clist.init(DOCOcount);
-	char getDir;
-	int getX, getY;
-	while (dp->getDOCOData(&getDir, &getX, &getY))
-	{
-		DOCO a(myMap, getX, getY, 500);
-		clist.addDOCO(a);
-	}
-	*/
 }
 world::~world()
 {
 
 }
 
+//Seeds the map with food pellets
 void world::seed()
 {
 	int reserve = 0; // represents how many pellets can be placed
@@ -95,6 +83,7 @@ void world::seed()
 
 }
 
+//Initialize world based on datafile
 void world::init(const char* fileName)
 {
 	DataParser* dp = dp->getInstance(fileName);
@@ -111,6 +100,8 @@ void world::init(const char* fileName)
 		clist.addDOCO(a);
 	}
 }
+
+//Each 1 second turn
 void world::turn()
 {
 	clist.act();
@@ -120,6 +111,8 @@ void world::turn()
 	myMap->draw();
 
 }
+
+//Set the world in motion
 void world::run(int turns)
 {
 	if (myMap == nullptr)
@@ -145,5 +138,7 @@ void world::run(int turns)
 			turn();
 		}
 	}
+	std::cout << "Final Report:" << std::endl;
+	clist.report();
 	return;
 }
