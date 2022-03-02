@@ -13,7 +13,9 @@ map::map()
 }
 
 map::~map()
-{}
+{
+
+}
 
 map::map(int mx, int my)
 {

@@ -15,7 +15,7 @@ creaturelist::creaturelist(int size)
 }
 creaturelist::~creaturelist()
 {
-
+	delete[] list;
 }
 
 void creaturelist::init(int size)

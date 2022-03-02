@@ -17,7 +17,7 @@ world::world(const char* fileName)
 }
 world::~world()
 {
-
+	delete myMap;
 }
 
 //Seeds the map with food pellets
@@ -121,6 +121,7 @@ void world::run(int turns)
 		std::cout << "World not initialized" << std::endl;
 		return;
 	}
+	//runs until all DOCOs die
 	else if (turns == -1)
 	{
 		seed();
@@ -134,7 +135,7 @@ void world::run(int turns)
 	{
 		seed();
 		myMap->draw();
-		for (int i = 1; i < turns; i++)
+		for (int i = 1; i <= turns; i++)
 		{
 			turn();
 		}
