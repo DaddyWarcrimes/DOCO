@@ -3,20 +3,17 @@
 
 #include <iostream>
 #include <string.h>
-#include "location.h"
-#include "creature.h"
-#include "map.h"
-#include "DataParser.h"
-#include "DOCO.h"
 #include <random>
-#include "creaturelist.h"
 #include "world.h"
+#include <fstream>
 
 
 
 
 int main()
 {
+
+    std::fstream infile;
     bool run = false;
     string dataFile = "DOCOData01.xml";
     int turns = -1;
@@ -42,7 +39,18 @@ int main()
         switch (selection)
         {
         case 1:
-            run = true;
+            infile.open(dataFile);
+            if (!infile)
+            {
+                string temp = dataFile;
+                dataFile = "***'";
+                dataFile.append(temp);
+                dataFile.append("' could not be opened***");
+            }
+            else
+            {
+                run = true;
+            }
             break;
         case 2:
             std::cout << "Enter new datafile name, including the file extension." << std::endl;
@@ -63,40 +71,6 @@ int main()
     w.run(turns);
 
 
-    /*previously working code
-    DataParser* dp = dp->getInstance("DOCOData01.xml");
-
-	map m(dp->getDOCOWorldWidth(),dp->getDOCOWorldHeight());
-
-    std::cout << dp->getDOCOCount() << std::endl;
-
-    std::cout << dp->getFoodCount() << std::endl;
-    std::cout << dp->getObstacleCount() << std::endl;
-
-    system("pause");
-
-    for (int i = 0; i < dp->getDOCOWorldWidth() && i < dp->getDOCOWorldHeight(); i++)
-    {
-        m.addPellet(i, i);
-    }
-    system("cls");
-    creaturelist l(dp->getDOCOCount());
-    char getDir;
-    int getX, getY;
-    while (dp->getDOCOData(&getDir, &getX, &getY))
-    {
-        DOCO a(&m, getX, getY, 500);
-        l.addDOCO(a);
-    }
-
-    for (int i = 0; i < 150; i++)
-    {
-        system("timeout 1 /nobreak > nul");
-        system("cls");
-        l.act();
-        m.draw();
-    }
-    */
     return 0;
 }
 

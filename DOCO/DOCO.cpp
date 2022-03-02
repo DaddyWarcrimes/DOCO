@@ -63,6 +63,7 @@ void DOCO::act()
 			else if (myMap->pelletCount(i + mapX,j + mapY) > 0)
 			{
 				energy -= 10;
+				age ++;
 				myMap->removeDOCO(mapX, mapY);
 				mapX += i;
 				mapY += j;
@@ -79,7 +80,7 @@ void DOCO::act()
 #ifdef DEBUG
 		std::cout << "Change course" << std::endl;
 #endif
-		age++;
+		
 	}
 	move();
 
@@ -174,6 +175,7 @@ void DOCO::move()
 	else
 	{
 		energy -= 10;
+		age++;
 		myMap->removeDOCO(mapX, mapY);
 		mapX += azimuthX;
 		mapY += azimuthY;

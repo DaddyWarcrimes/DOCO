@@ -86,6 +86,7 @@ void world::seed()
 //Initialize world based on datafile
 void world::init(const char* fileName)
 {
+
 	DataParser* dp = dp->getInstance(fileName);
 	maxX = dp->getDOCOWorldWidth();
 	maxY = dp->getDOCOWorldHeight();
